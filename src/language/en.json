@@ -1,0 +1,52 @@
+{
+    "add":"Add",
+    "update":"Update",
+    "login":"Log in",
+    "register":"Register",
+    "hackathon":"Hackathon",
+    "hackathon_2":"Hackathon 2.0",
+    "search":"Search",
+    "add_book":"Add Book",
+    "logout":"Logout",
+    "cancel":"Cancel",
+    "update_book":"Update book",
+    "delete_book":"Delete book",
+    "add_new_book":"Add new book",
+    "login_header":"Log in to access Hackathon 2.0",
+    "register_header":"Register to access Hackathon 2.0",
+    "name_input":{
+    "label":"Name",
+    "required":"Name is required",
+    "placeholder":"Enter name here"
+    },
+    "email_input":{
+    "label":"Email",
+    "required":"Email is required",
+    "placeholder":"Enter email here"
+    },
+    "password_input":{
+    "label":"Password",
+    "required":"Password is required",
+    "placeholder":"Enter password here"
+    },
+    "title_input":{
+    "label":"Title",
+    "required":"Title is required",
+    "placeholder":"Enter title here"
+    },
+    "author_input":{
+    "label":"Author",
+    "required":"Author is required",
+    "placeholder":"Enter author here"
+    },
+    "price_input":{
+    "label":"Price",
+    "required":"Price is required",
+    "placeholder":"Enter price here"
+    },
+    "status_input":{
+    "label":"Status",
+    "required":"Status is required",
+    "placeholder":"Select status"
+    }
+}
