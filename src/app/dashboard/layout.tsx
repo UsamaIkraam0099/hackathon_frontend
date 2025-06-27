@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 // others
 import "../globals.css";
-import { NavBar } from "@/components";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -14,10 +13,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div className="">
-      <NavBar />
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

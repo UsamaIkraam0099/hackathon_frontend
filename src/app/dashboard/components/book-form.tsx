@@ -68,6 +68,7 @@ const index = ({ open, refresh, updateState, selectedBook }: ModalProps) => {
     createAndUpdateBook({
       data,
       callback: handleCancel,
+      bookId: selectedBook?._id,
       method: selectedBook?._id ? "PUT" : "POST",
     });
 

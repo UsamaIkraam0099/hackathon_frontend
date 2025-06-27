@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 // others
 import "../app/globals.css";
@@ -21,8 +22,16 @@ const index = () => {
   // hooks initialization
   const router = useRouter();
 
-  // local variables
-  const userDetails = JSON.parse(localStorage.getItem("userDetails") || "");
+  // states
+  const [userDetails, setUserDetails] = useState<any>({});
+
+  useEffect(() => {
+    const user = localStorage.getItem("userDetails");
+
+    if (user) {
+      setUserDetails(JSON.parse(user));
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -31,7 +40,7 @@ const index = () => {
   };
 
   return (
-    <div className="px-8 w-full flex fixed items-center justify-between h-16 bg-(--primary-button-bg)">
+    <div className="top-0 px-8 w-full flex fixed items-center z-999999999 justify-between h-16 bg-(--primary-button-bg)">
       <div className="flex">
         <Image
           height={2}
@@ -48,7 +57,7 @@ const index = () => {
           arrow={false}
           title={en.logout}
           placement="bottom"
-          overlayInnerStyle={toolTipStyle}
+          styles={{ body: toolTipStyle }}
         >
           <LogoutOutlined
             style={{ color: "#fff" }}

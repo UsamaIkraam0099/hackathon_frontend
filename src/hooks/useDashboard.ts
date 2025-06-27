@@ -66,6 +66,7 @@ export const useDashboard = () => {
 
   const createAndUpdateBook = async ({
     data,
+    bookId,
     callback,
     method = "POST",
   }: any) => {
@@ -89,7 +90,7 @@ export const useDashboard = () => {
         config = {
           ...config,
           ...{
-            url: `${books_url}/${data._id}`,
+            url: `${books_url}/${bookId}`,
             data: {
               title: data.title,
               price: data.price,

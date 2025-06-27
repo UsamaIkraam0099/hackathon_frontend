@@ -2,8 +2,9 @@
 import { Dashboard } from "./components";
 
 export default function DashboardScreen() {
+  // min-h-screen flex items-center justify-center
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="">
       <Dashboard />
     </div>
   );

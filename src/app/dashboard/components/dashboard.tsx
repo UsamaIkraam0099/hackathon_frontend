@@ -8,6 +8,7 @@ import { BookForm } from "./index";
 import en from "@/language/en.json";
 import { Table, Tooltip } from "antd";
 import { TableHeader } from "./index";
+import { NavBar } from "@/components";
 import { useDashboard } from "@/hooks";
 import type { TableColumnsType } from "antd";
 import { Empty, Loading } from "@/components";
@@ -69,6 +70,7 @@ const index = () => {
     { title: "Author", dataIndex: "author" },
     { title: "Price", dataIndex: "price" },
     {
+      // key: "status",
       title: "Status",
       dataIndex: "status",
       render: (_, record) => (
@@ -82,6 +84,7 @@ const index = () => {
       ),
     },
     {
+      // key: "createdAt",
       title: "Created At",
       dataIndex: "createdAt",
       render: (_, record) => (
@@ -89,6 +92,7 @@ const index = () => {
       ),
     },
     {
+      // key: "updatedAt",
       title: "Updated At",
       dataIndex: "updatedAt",
       render: (_, record) => (
@@ -96,6 +100,7 @@ const index = () => {
       ),
     },
     {
+      // key: "actions",
       title: "Actions",
       dataIndex: "actions",
       render: (_, record: any) => (
@@ -104,7 +109,7 @@ const index = () => {
             arrow={false}
             placement="bottom"
             title={en.update_book}
-            overlayInnerStyle={toolTipStyle}
+            styles={{ body: toolTipStyle }}
           >
             <EditOutlined
               className="cursor-pointer"
@@ -123,7 +128,7 @@ const index = () => {
               arrow={false}
               placement="bottom"
               title={en.delete_book}
-              overlayInnerStyle={toolTipStyle}
+              styles={{ body: toolTipStyle }}
             >
               <DeleteOutlined
                 style={{ color: "red" }}
@@ -132,45 +137,52 @@ const index = () => {
               />
             </Tooltip>
           ) : (
-            <LoadingOutlined className="ml-4" style={{ color: "#145da0;" }} />
+            <LoadingOutlined className="ml-4" style={{ color: "#145da0" }} />
           )}
         </div>
       ),
     },
   ];
 
+  const booksCopy = books.map((book: any) => ({ ...book, key: book._id }));
+
   return (
-    <div className="px-8 w-full h-full">
-      <Loading loading={loading} />
+    <>
+      <div className="w-full h-full">
+        <NavBar />
 
-      {!loading && (
-        <div className="" style={{}}>
-          <TableHeader metaData={metaData} updateState={updateState} />
+        <Loading loading={loading} />
 
-          <Table<DataType>
-            bordered
-            columns={columns}
-            dataSource={books}
-            className="custom-table"
-            pagination={{
-              total: metaData.total,
-              current: metaData.page,
-              pageSize: metaData.perPage,
-              onChange: (page) => handlePagination(page),
-            }}
-          />
-        </div>
-      )}
+        {!loading && (
+          <div className="px-8 mt-28 w-full">
+            <TableHeader metaData={metaData} updateState={updateState} />
 
-      {!loading && books.length === 0 && <Empty />}
+            <Table<DataType>
+              bordered
+              columns={columns}
+              scroll={{ y: 400 }}
+              dataSource={booksCopy}
+              className="custom-table"
+              pagination={{
+                total: metaData.total,
+                current: metaData.page,
+                pageSize: metaData.perPage,
+                onChange: (page) => handlePagination(page),
+              }}
+            />
+          </div>
+        )}
 
-      <BookForm
-        open={open}
-        refresh={getBooks}
-        updateState={updateState}
-        selectedBook={selectedBook}
-      />
-    </div>
+        {!loading && books.length === 0 && <Empty />}
+
+        <BookForm
+          open={open}
+          refresh={getBooks}
+          updateState={updateState}
+          selectedBook={selectedBook}
+        />
+      </div>
+    </>
   );
 };
 
