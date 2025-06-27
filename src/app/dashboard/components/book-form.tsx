@@ -35,6 +35,8 @@ interface IFormInput {
   status: string;
 }
 
+type Field = "title" | "price" | "author" | "status";
+
 const btnStyle = {
   color: "#fff",
   fontWeight: "bold",
@@ -53,8 +55,13 @@ const index = ({ open, refresh, updateState, selectedBook }: ModalProps) => {
     formState: { errors },
   } = useForm<IFormInput>();
 
+  const isValidField = (key: string): key is Field => {
+    return ["title", "price", "author", "status"].includes(key);
+  };
+
   useEffect(() => {
-    for (const key in selectedBook) setValue(key, selectedBook[key]);
+    for (const key in selectedBook)
+      if (isValidField(key)) setValue(key, selectedBook[key]);
   }, [selectedBook]);
 
   const onSubmit: SubmitHandler<IFormInput> = (data: any) =>
